@@ -25,22 +25,30 @@
     </style>
 </head>
 
-<body class="poppins">
+<body class="poppins p-5 lg:p-0">
     <header>
     </header>
     <main>
         <section class="max-w-[1140px] container mx-auto">
             <div class="flex flex-col items-center gap-8">
-                <h3 class="text-4xl font-semibold">Search your phone</h3>
-                <div class="h-16 w-[752px] bg-[rgba(16,15,15,0.05)] rounded-lg flex">
-                    <input class="flex-1 outline-none p-4 bg-transparent h-full " type="text"
+
+                <h3 class="text-2xl lg:text-4xl font-semibold">Search your phone</h3>
+
+                <div class="h-16 w-full lg:w-[752px] lg:bg-[rgba(16,15,15,0.05)] rounded-lg flex flex-col lg:flex-row items-center gap-1 lg:gap-0">
+
+                    <input id="search-input" class="lg:flex-1 rounded-lg outline-none p-4 bg-[rgba(16,15,15,0.05)] lg:bg-transparent h-full " type="text"
                         placeholder="Search your phone">
-                    <button class="btn h-full w-[150px] bg-[#0D6EFD] text-xl font-bold text-white">Search</button>
+
+                    <button onclick="handleSearch()" id="search-btn" class="btn lg:h-full w-[150px] bg-[#0D6EFD] text-xl font-bold text-white">Search</button>
+
                 </div>
             </div>
 
 
             <div id="phones-container" class="mt-12 flex flex-wrap gap-6 justify-center w-full">
+                <div id="loading-spinner" class="hidden">
+                    <span class="loading loading-dots loading-lg"></span>
+                </div>
                 <!-- <div class="text-center space-y-6 card bg-base-100  max-w-[364px] p-6 border-[1px] border-[#CFCFCF] rounded-lg">
                     <div class="rounded-lg h-[314px] w-[300px] flex justify-center items-center bg-[rgba(13,110,253,0.05)]">
                         <img class="size-[214px]" src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" />

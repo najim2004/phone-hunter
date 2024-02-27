@@ -1,15 +1,16 @@
-const loadPhone = async () => {
-    const res = await fetch('https://openapi.programming-hero.com/api/phones?search=iphone');
+const loadPhone = async (searchText) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
     const data = await res.json();
     const phones = data.data;
     displayPhones(phones);
-}
+};
 
 const displayPhones = phones => {
     const phonesContainer = document.getElementById('phones-container');
-
+    phonesContainer.innerHTML = '';
+    // phonesContainer.textContent='';
     phones.forEach(phone => {
-        const div=document.createElement('div');
+        const div = document.createElement('div');
         const img = phone.image;
         const phoneName = phone.phone_name;
         const brand = phone.brand;
@@ -35,9 +36,32 @@ const displayPhones = phones => {
         `
         phonesContainer.appendChild(div);
     });
-}
+    toggleLoadingSpinner(false);
+};
+
+// handle search button
+const handleSearch = () => {
+    toggleLoadingSpinner(true);
+    const searchField = document.getElementById('search-input');
+    const searchText = searchField.value.toLowerCase();
+    loadPhone(searchText);
+};
+
+document.getElementById('search-input').addEventListener('keyup', (e) => {
+    if (e.key == 'Enter') {
+        handleSearch();
+    }
+});
+
+const toggleLoadingSpinner = (isLoading) => {
+    const loadingSpinner = document.getElementById('loading-spinner');
+    if(isLoading){
+        loadingSpinner.classList.remove('hidden');
+    }
+    else{
+        loadingSpinner.classList.add('hidden');
+    }
+};
 
 
-
-
-loadPhone();
+// loadPhone();
