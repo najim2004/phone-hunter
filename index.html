@@ -5,17 +5,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phone Hunter</title>
+
+    <!-- Tailwind & DaisyUI CDN link -->
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        .poppins {
+            font-family: "Poppins", sans-serif;
+        }
+    </style>
 </head>
 
-<body>
+<body class="poppins">
     <header>
-
     </header>
     <main>
+        <section class="max-w-[1140px] container mx-auto">
+            <div class="flex flex-col items-center gap-8">
+                <h3 class="text-4xl font-semibold">Search your phone</h3>
+                <div class="h-16 w-[752px] bg-[rgba(16,15,15,0.05)] rounded-lg flex">
+                    <input class="flex-1 outline-none p-4 bg-transparent h-full " type="text"
+                        placeholder="Search your phone">
+                    <button class="btn h-full w-[150px] bg-[#0D6EFD] text-xl font-bold text-white">Search</button>
+                </div>
+            </div>
 
+
+            <div id="phones-container" class="mt-12 flex flex-wrap gap-6 justify-center w-full">
+                <!-- <div class="text-center space-y-6 card bg-base-100  max-w-[364px] p-6 border-[1px] border-[#CFCFCF] rounded-lg">
+                    <div class="rounded-lg h-[314px] w-[300px] flex justify-center items-center bg-[rgba(13,110,253,0.05)]">
+                        <img class="size-[214px]" src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" />
+                    </div>
+
+                    <div class="space-y-6 ">
+                        <h2 class="text-2xl font-bold text-[#403F3F]">Iphone 13 Pro Max</h2>
+                        <p class="font-semibold text-[#706F6F]">Brand:<span></span></p>
+                        <p class="text-lg text-[#706F6F]">There are many variations of passages of available, but the majority have suffered</p>
+                        <h3 class="text-2xl font-bold text-[#403F3F]">$999</h3>
+                        <div class="">
+                            <button class="btn bg-[#0D6EFD] h-12 w-[180px] text-white">Show Details</button>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </section>
     </main>
     <footer>
-        
+
     </footer>
     <script src="./js/phone.js"></script>
 </body>
