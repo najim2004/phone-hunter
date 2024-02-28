@@ -1,19 +1,13 @@
 const loadPhone = async (searchText, isShowAll) => {
-    const input = document.getElementById('search-input').value;
-    if (searchText) {
-        const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
-        const data = await res.json();
-        const phones = data.data;
-        displayPhones(phones, isShowAll);
-    }
-    else {
-        const res = await fetch('https://openapi.programming-hero.com/api/phones?search=iphone');
-        const data = await res.json();
-        const phones = data.data;
-        // document.getElementById('search-input').value = '';
-        displayPhones(phones, isShowAll);
-    }
+
+    const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
+    const data = await res.json();
+    const phones = data.data;
+    displayPhones(phones, isShowAll);
+
+
 };
+
 
 const displayPhones = (phones, isShowAll) => {
     const phonesContainer = document.getElementById('phones-container');
@@ -48,7 +42,7 @@ const displayPhones = (phones, isShowAll) => {
                     <p class="text-lg text-[#706F6F]">There are many variations of passages of available, but the majority have suffered</p>
                     <h3 class="text-2xl font-bold text-[#403F3F]">$999</h3>
                     <div class="">
-                        <button onclick="handleShowDetails('${productId}')" class="btn bg-[#0D6EFD] h-12 w-[180px] text-white">Show Details</button>
+                        <button onclick="handleShowDetails('${img}','${brand}','${phoneName}', '${productId}')" class="btn bg-[#0D6EFD] h-12 w-[180px] text-white">Show Details</button>
                     </div>
                 </div>
             </div>
@@ -67,11 +61,13 @@ const handleSearch = (isShowAll) => {
     loadPhone(searchText, isShowAll);
 };
 
+
 document.getElementById('search-input').addEventListener('keyup', (e) => {
     if (e.key == 'Enter') {
         handleSearch();
     }
 });
+
 
 const toggleLoadingSpinner = (isLoading) => {
     const loadingSpinner = document.getElementById('loading-spinner');
@@ -83,25 +79,46 @@ const toggleLoadingSpinner = (isLoading) => {
     }
 };
 
+
 const handleShowAll = () => {
     handleSearch(true);
     document.getElementById('search-input').value = '';
 };
 
-const handleShowDetails = (id) => {
+
+const handleShowDetails = (img, brand, phoneName, productId) => {
     const modalSection = document.getElementById('modal-section');
     modalSection.classList.remove('hidden');
-    setModalDetails(id);
+    setModalDetails(img, brand, phoneName, productId);
 }
-const setModalDetails = async (id) => {
-    const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${id}`);
-    const data = await res.json();
-    console.log(data.data);
+
+
+
+const setModalDetails = (img, brand, phoneName, productId) => {
+    const phonesContainer = document.getElementById('modal-container');
+    const allChild = phonesContainer.children;
+    console.log(allChild);
+    const image = allChild[0];
+    image.innerHTML = `
+        <img class="h-[381px] w-[268px]"
+        src="${img}" alt="">`
+    const modelName = allChild[1].children[0];
+    modelName.innerText = phoneName;
+
+    const slug = allChild[1].children[6].children[0];
+    slug.innerText = productId;
+
+    const phoneBrand = allChild[1].children[8].children[0];
+    phoneBrand.innerText = brand;
 }
+
+
+
+
 function hiedModal() {
     const modalSection = document.getElementById('modal-section');
     modalSection.classList.add('hidden');
 }
 
 
-loadPhone(false, false);
+loadPhone('iphone');
